@@ -1,6 +1,12 @@
 import css from './ImageCard.module.css';
+import { Modal, Pictures } from '../App/App';
 
-export default function ImageCard({ picture, onImageClick }) {
+interface ImageCardProps {
+  onImageClick: (image: Modal) => void;
+  picture: Pictures;
+}
+
+export default function ImageCard({ picture, onImageClick }: ImageCardProps) {
     const imgData = {
     imgSrc: picture.urls.regular,
     imgDescription: picture.description,

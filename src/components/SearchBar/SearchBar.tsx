@@ -3,7 +3,11 @@ import { Field, Form, Formik } from 'formik';
 import { IoSearchSharp } from "react-icons/io5";
 import css from './SearchBar.module.css';
 
-export default function SearchBar ({ onSubmit }) {
+interface SearchBarProps {
+  onSubmit: (query: string) => void;
+}
+
+export default function SearchBar ({ onSubmit }: SearchBarProps) {
   return (
     <Formik
       initialValues={{ query: '' }}

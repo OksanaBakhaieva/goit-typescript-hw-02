@@ -1,6 +1,11 @@
 import css from './LoadMoreBtn.module.css';
 
-export default function LoadMoreBtn ({ onLoadMore }) {
+
+interface LoadMoreBtnProps {
+  onLoadMore: () => void;
+}
+
+export default function LoadMoreBtn ({ onLoadMore }: LoadMoreBtnProps) {
   return (
     <button className={css.loadMoreBtn} onClick={onLoadMore}>
       Load More

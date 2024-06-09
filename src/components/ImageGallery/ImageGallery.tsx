@@ -1,7 +1,14 @@
+import { Modal, Pictures } from '../App/App';
 import ImageCard from '../ImageCard/ImageCard';
 import css from './ImageGallery.module.css';
 
-export default function ImageGallery({ pictures, onImageClick }) {
+
+interface ImageGalleryProps {
+  onImageClick: (image: Modal) => void;
+  pictures: Pictures[] | null;
+}
+
+export default function ImageGallery({ pictures, onImageClick }:ImageGalleryProps) {
     return (
         <ul className={css.gallery}>
             {pictures !== null && Array.isArray(pictures) && pictures.map(picture => {

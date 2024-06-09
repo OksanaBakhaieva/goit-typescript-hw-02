@@ -11,19 +11,41 @@ import { Toaster } from 'react-hot-toast';
 import css from './App.module.css';
 import { errorMes, noquery } from '../../services/toaster';
 
+export interface Pictures {
+  id: string;
+  description: string;
+  alt_description: string;
+  urls: {
+    small: string;
+    regular: string;
+  };
+  likes: number;
+  user: {
+    name: string;
+  };
+};
+
+export type ModalWindow = {
+  imgSrc: string;
+  imgDescription: string;
+  imgAlt: string;
+};
+
+export type Data = {
+  total: number;
+  total_pages: number;
+  results: Pictures[];
+};
+
 export default function App() {
-    const [searchQuery, setSearchQuery] = useState(null);
-    const [pictures, setPictures] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [isError, setIsError] = useState(false);
-    const [loadMore, setLoadMore] = useState(false);
-    const [page, setPage] = useState(1);
-    const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedImage, setSelectedImage] = useState({
-        imgSrc: '',
-        imgDescription: '',
-        imgAlt: '',
-   });
+    const [searchQuery, setSearchQuery] = useState<string | null>(null);
+    const [pictures, setPictures] = useState<Pictures[]>([]);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [isError, setIsError] = useState<boolean>(false);
+    const [loadMore, setLoadMore] = useState<boolean>(false);
+    const [page, setPage] = useState<number>(1);
+    const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+    const [selectedImage, setSelectedImage] = useState<ModalWindow | null>(null);
 
     useEffect(() => {
         if (!searchQuery || searchQuery === null) {
@@ -38,7 +60,7 @@ export default function App() {
                 setIsError(false);
                 setIsModalOpen(false);
                 setIsLoading(true);
-                const data = await fetchImages(searchQuery, page);
+                const data: Data = await fetchImages(searchQuery, page);
                     if (data.total === 0) {
                         noquery();
                         return;
@@ -58,7 +80,7 @@ export default function App() {
         getImages();
     }, [searchQuery, page]);
 
-    const handleSearchQuery = query => {
+    const handleSearchQuery = (query: string) => {
         setSearchQuery(query);
         setPage(1);
         setPictures([]);
@@ -68,7 +90,7 @@ export default function App() {
         setPage(prevPage => prevPage + 1);
     };
 
-    const handleImageClick = image => {
+    const handleImageClick = (image: Modal) => {
         setSelectedImage(image);
         openModal();
     };

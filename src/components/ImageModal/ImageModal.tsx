@@ -1,10 +1,18 @@
 import { MdClose } from 'react-icons/md';
-import Modal from 'react-modal';
+import Modal from react-modal;
 import css from './ImageModal.module.css';
 
-Modal.setAppElement('#root');
+// Modal.setAppElement('#root');
 
-export default function ImageModal ({closeModal, isModalOpen, imgSrc, imgDescription, imgAlt,}) {
+interface ImageModalProps {
+  closeModal: () => void;
+  isModalOpen: boolean;
+  imgSrc?: string;
+  imgDescription?: string;
+  imgAlt?: string;
+}
+
+export default function ImageModal ({closeModal, isModalOpen, imgSrc, imgDescription, imgAlt,}:ImageModalProps) {
   return (
     <div>
       <Modal
