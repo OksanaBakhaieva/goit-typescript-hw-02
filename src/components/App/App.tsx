@@ -7,16 +7,15 @@ import Loader from '../Loader/Loader';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ImageModal from '../ImageModal/ImageModal';
 import { Toaster } from 'react-hot-toast';
-import ReactModal from "react-modal";
 import css from './App.module.css';
 import { errorMes, noquery } from '../../services/toaster';
 import { Data, ModalWindow, Pictures } from './App.types';
 
-ReactModal.setAppElement("#root");
+
 interface Props {}
 
 const App: FC<Props> = () =>{
-    const [searchQuery, setSearchQuery] = useState<string | null>(null);
+    const [searchQuery, setSearchQuery] = useState<string>('');
     const [pictures, setPictures] = useState<Pictures[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [isError, setIsError] = useState<boolean>(false);
