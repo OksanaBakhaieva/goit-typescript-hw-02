@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { fetchImages } from '../../images-api';
 import ImageGallery from '../ImageGallery/ImageGallery';
 import SearchBar from '../SearchBar/SearchBar';
@@ -7,37 +7,15 @@ import Loader from '../Loader/Loader';
 import LoadMoreBtn from '../LoadMoreBtn/LoadMoreBtn';
 import ImageModal from '../ImageModal/ImageModal';
 import { Toaster } from 'react-hot-toast';
-
+import ReactModal from "react-modal";
 import css from './App.module.css';
 import { errorMes, noquery } from '../../services/toaster';
+import { Data, ModalWindow, Pictures } from './App.types';
 
-export interface Pictures {
-  id: string;
-  description: string;
-  alt_description: string;
-  urls: {
-    small: string;
-    regular: string;
-  };
-  likes: number;
-  user: {
-    name: string;
-  };
-};
+ReactModal.setAppElement("#root");
+interface Props {}
 
-export type ModalWindow = {
-  imgSrc: string;
-  imgDescription: string;
-  imgAlt: string;
-};
-
-export type Data = {
-  total: number;
-  total_pages: number;
-  results: Pictures[];
-};
-
-export default function App() {
+const App: FC<Props> = () =>{
     const [searchQuery, setSearchQuery] = useState<string | null>(null);
     const [pictures, setPictures] = useState<Pictures[]>([]);
     const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -90,7 +68,7 @@ export default function App() {
         setPage(prevPage => prevPage + 1);
     };
 
-    const handleImageClick = (image: Modal) => {
+    const handleImageClick = (image: ModalWindow) => {
         setSelectedImage(image);
         openModal();
     };
@@ -126,3 +104,4 @@ export default function App() {
         </div>
 )}
 
+export default App;

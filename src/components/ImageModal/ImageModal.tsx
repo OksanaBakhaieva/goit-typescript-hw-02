@@ -1,8 +1,7 @@
 import { MdClose } from 'react-icons/md';
-import Modal from react-modal;
+import ReactModal from 'react-modal';
+import { FC } from 'react';
 import css from './ImageModal.module.css';
-
-// Modal.setAppElement('#root');
 
 interface ImageModalProps {
   closeModal: () => void;
@@ -12,10 +11,10 @@ interface ImageModalProps {
   imgAlt?: string;
 }
 
-export default function ImageModal ({closeModal, isModalOpen, imgSrc, imgDescription, imgAlt,}:ImageModalProps) {
+const ImageModal: FC<ImageModalProps> = ({closeModal, isModalOpen, imgSrc, imgDescription, imgAlt,}:ImageModalProps) =>{
   return (
     <div>
-      <Modal
+      <ReactModal
         isOpen={isModalOpen}
         onRequestClose={closeModal}
         contentLabel="Image Modal"
@@ -38,8 +37,9 @@ export default function ImageModal ({closeModal, isModalOpen, imgSrc, imgDescrip
             {imgDescription || 'Image according to your request'}
           </p>
         </div>
-      </Modal>
+      </ReactModal>
     </div>
   );
 };
 
+export default ImageModal;

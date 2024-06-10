@@ -1,8 +1,8 @@
 import css from './ImageCard.module.css';
-import { Modal, Pictures } from '../App/App';
+import { ModalWindow, Pictures } from '../App/App.types';
 
 interface ImageCardProps {
-  onImageClick: (image: Modal) => void;
+  onImageClick: (image: ModalWindow) => void;
   picture: Pictures;
 }
 
